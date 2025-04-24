@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [input, setInput] = useState("");
@@ -22,6 +23,7 @@ function App() {
   };
 
   return (
+  
     <div style={{ padding: 20 }}>
       <h2>🤖 Askie</h2>
       <div>
@@ -36,6 +38,7 @@ function App() {
         placeholder="Type a message..."
       />
       <button onClick={sendMessage}>Send</button>
+      <Analytics/>
     </div>
   );
 }
