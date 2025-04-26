@@ -4,13 +4,13 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# Enable CORS for your frontend
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
-     allow_origins=[
-        "http://localhost:5173",  # For local development
-        "https://askiebot.vercel.app",  # For production
-    ],  # Or whatever your frontend port is
+    allow_origins=[
+        "http://localhost:5173", 
+        "https://askiebot.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,3 +41,8 @@ def crude_response(msg: str):
 async def chat(msg: Message):
     reply = crude_response(msg.message)
     return {"reply": reply}
+
+# Optional: Root route to test server is alive
+@app.get("/")
+async def root():
+    return {"message": "Askie server is running!"}
