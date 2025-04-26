@@ -30,6 +30,8 @@ def crude_response(msg: str):
         return "Yo! You got something to say?"
     elif "howdy" in msg:
         return "Howdy, partner! 🤠"
+    elif "i'm good" in msg:
+        return "Alright, boss! Keep it cool 😎."
     
     # Asking how the bot is doing
     elif "how are you" in msg:
