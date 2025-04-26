@@ -7,7 +7,10 @@ app = FastAPI()
 # Enable CORS for your frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Or whatever your frontend port is
+     allow_origins=[
+        "http://localhost:5173",  # For local development
+        "https://askiebot.vercel.app",  # For production
+    ],  # Or whatever your frontend port is
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

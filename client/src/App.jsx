@@ -10,7 +10,12 @@ function App() {
     const userMessage = { sender: "user", text: input };
     setMessages(prev => [...prev, userMessage]);
 
-    const res = await fetch("http://localhost:8000/chat", {
+    // 👇 Smart backend URL depending on localhost or production
+    const backendUrl = window.location.hostname === "localhost"
+      ? "http://localhost:8000/chat"
+      : "https://askie-66pw.onrender.com"; // <-- replace with your actual Render URL
+
+    const res = await fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: input }),
@@ -23,7 +28,6 @@ function App() {
   };
 
   return (
-  
     <div style={{ padding: 20 }}>
       <h2>🤖 Askie</h2>
       <div>
