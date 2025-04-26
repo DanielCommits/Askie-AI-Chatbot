@@ -13,7 +13,7 @@ function App() {
     // 👇 Smart backend URL depending on localhost or production
     const backendUrl = window.location.hostname === "localhost"
       ? "http://localhost:8000/chat"
-      : "https://askie-66pw.onrender.com"; // <-- replace with your actual Render URL
+      : "https://askie-66pw.onrender.com/chat"; // <-- replace with your actual Render URL
 
     const res = await fetch(backendUrl, {
       method: "POST",
