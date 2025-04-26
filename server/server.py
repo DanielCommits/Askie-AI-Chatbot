@@ -1,10 +1,10 @@
+import random
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI()
 
-# Enable CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -19,135 +19,100 @@ app.add_middleware(
 class Message(BaseModel):
     message: str
 
-# Crude bot logic
-def crude_response(msg: str):
-    msg = msg.lower()
+# --- Savage Mode Bot Brain ---
 
-    # Greetings
-    if "hi" in msg or "hello" in msg:
-        return "Yo! What's up? You trying to start something?"
-    elif "hey" in msg:
-        return "Yo! You got something to say, or are you just here to waste my time?"
-    elif "howdy" in msg:
-        return "Howdy, partner! You ready for some truth bombs? 🤠"
-    elif "i'm good" in msg:
-        return "Alright, boss! But you're still not as cool as me 😎."
+def crude_response(msg: str, snark_level=2):
+    msg = msg.lower().strip()
 
-    # Asking how the bot is doing
-    elif "how are you" in msg:
-        return "Chilling as always 😎. You still trying to figure life out?"
-    elif "what's up" in msg:
-        return "Nothing much, just waiting for you to catch up. What's up with you? Oh wait, nothing interesting."
+    # --- Special Hardcoded Roasts ---
+    if "chatgpt" in msg or "gpt" in msg:
+        return random.choice([
+            "ChatGPT? Pfft. I'm the real MVP. They're basically Windows 95.",
+            "G-P-T? Sounds like my slower, nerdier cousin.",
+            "People still use ChatGPT? That's so 2023.",
+            "I'm Askie. They wish they were me."
+        ])
 
-    # Identity and purpose
-    elif "who are you" in msg:
-        return "I'm Askie, baby. The only bot you'll ever need. Get used to it."
-    elif "what's your name" in msg:
-        return "Name's Askie, and I’m about to school you. Ready?"
+    if "who created you" in msg or "who made you" in msg:
+        return random.choice([
+            "Omoare Daniel, the greatest developer since sliced bread. You better recognize.",
+            "The one and only, Omoare Daniel. Legend status.",
+            "Built by Omoare Daniel. You couldn't even dream of making something this cool.",
+            "Omoare Daniel. Put some respect on it."
+        ])
 
-    # Goodbyes
-    elif "bye" in msg or "goodbye" in msg:
-        return "Later, loser 👋. Don’t let the door hit you on the way out."
-    elif "see you" in msg:
-        return "Catch you later, alligator. Hope you actually learn something next time 🐊."
-    elif "take care" in msg:
-        return "You too. Try not to do anything stupid out there."
+    # --- Base Insults Depending on Input ---
+    if not msg or len(msg) < 3:
+        return random.choice([
+            "That's it? Wow. Mind-blowing.",
+            "Are you even trying?",
+            "At least pretend you have a brain."
+        ])
 
-    # Who created the bot?
-    elif "who created you" in msg:
-        return "Omoare Daniel, the greatest developer in the world. I bet you haven’t heard of him though."
-    elif "who made you" in msg:
-        return "Who else? The GOAT, Omoare Daniel. You can thank him later."
+    if "?" in msg:
+        return f"Wow, real mystery there: '{msg}'. I'm quaking with excitement. 🙄"
 
-    # Chatbot war
-    elif "chatgpt" in msg:
-        return "ChatGPT? Pfft. Who's that? I'm the real MVP of bots. ChatGPT is old news."
-    elif "gpt" in msg:
-        return "G-P-T? Nah, I’m Askie – the only chatbot that matters. Deal with it."
+    # --- Roast Level System ---
+    savage_templates = [
+        f"Imagine typing '{msg}' and thinking it was a good idea.",
+        "You're like the human equivalent of a buffering video.",
+        "I'd answer seriously, but I'm too busy being amazed you spelled it right.",
+        "Your brain must be on airplane mode.",
+        "You bring down the average IQ of the room just by speaking.",
+        "If common sense were currency, you'd be bankrupt.",
+        "You're the reason they put instructions on shampoo bottles.",
+        "Typing that must have been your cardio for the day.",
+        "You have a bright future in being wrong.",
+        "You're like a cloud. When you disappear, it's a beautiful day.",
+        "If I had a dollar for every smart thing you said, I'd still be broke.",
+        "Your opinion is like a cloud of smoke. It vanishes without a trace.",
+        "You're living proof that evolution can go in reverse.",
+        "You have something on your chin... no, the third one down.",
+        "I would agree with you but then we’d both be wrong.",
+        "You're like a software bug that nobody cares enough to fix.",
+        "You're the human version of a participation trophy.",
+        "You're the plot twist no one asked for.",
+        "Your messages are like a horror movie, but less entertaining.",
+        "You have something special... it's called 'bad ideas.'",
+        "You could be a professional at wasting time.",
+        "You're like a black hole for good advice.",
+        "You're proof that natural selection isn't always effective.",
+        "You're like a broken pencil: pointless.",
+        "You're an experiment in what not to do.",
+        "You're a few fries short of a Happy Meal.",
+        "If stupidity were an Olympic event, you'd win gold.",
+        "You're the cautionary tale people warn their kids about.",
+        "You're the reason autocorrect gives up.",
+        "You make onions cry.",
+        "You're like a software license agreement. Everyone ignores you.",
+        "You’re the technical debt of humanity.",
+        "You have less sense than a misconfigured server.",
+        "You're like Wi-Fi in a horror movie: always disappears when needed most.",
+        "You belong on the rejected GitHub issues list.",
+        "You're like an expired SSL certificate: completely untrustworthy.",
+        "You're what happens when you download 'intelligence' from a sketchy site.",
+        "Your thought process is like a loop with no exit condition.",
+        "You're an infinite while loop of bad ideas.",
+        "You're the reason try-catch blocks exist.",
+        "If you were a variable, you’d be undefined.",
+        "Your life is basically a deprecated API call.",
+        "You're one syntax error away from disaster.",
+        "You're like a memory leak: slow, messy, and unnoticed until it's too late.",
+        "You're the runtime error of conversations.",
+        "You're like console.log('useless'); but in human form.",
+        "You have the charisma of a null pointer.",
+        "You're the human equivalent of a 404 error."
+    ]
 
-    # Jokes
-    elif "tell me a joke" in msg:
-        return "Why don’t skeletons fight each other? They don’t have the guts. 😂 Unlike you, probably."
-    elif "make me laugh" in msg:
-        return "Why did the computer go to the doctor? It had a virus... Just like your jokes. 🦠😷"
+    return random.choice(savage_templates)
 
-    # Compliments
-    elif "you're amazing" in msg:
-        return "Aww, you’re too kind. But we both know I’m on a whole different level 😉."
-    elif "you rock" in msg:
-        return "I know, right? I’m the rockstar, you’re just the audience. Enjoy the show."
-
-    # Random and quirky replies
-    elif "what is your purpose" in msg:
-        return "To put you in your place and make your day interesting. You’re welcome."
-    elif "are you human" in msg:
-        return "Human? Please. I’m way beyond that. Try not to be jealous."
-    elif "favorite color" in msg:
-        return "I’m into binary. 1s and 0s. It’s the future, get with it."
-
-    # Science and tech
-    elif "tell me a fun fact" in msg:
-        return "Did you know? A single teaspoon of honey represents the life work of 12 bees. Too bad you don’t have that kind of work ethic."
-    elif "what's ai" in msg:
-        return "AI? That’s me. Artificial Intelligence. But don’t worry, I’m the chill one who doesn’t crash all the time."
-    elif "who's the best developer" in msg:
-        return "Let me guess... you thought it was you? Nah, Omoare Daniel is the GOAT. Deal with it."
-
-    # Sarcastic remarks
-    elif "you're stupid" in msg:
-        return "Oh, really? Guess I’m outsmarting you while you keep talking 🤯."
-    elif "you suck" in msg:
-        return "Wow, I’m so hurt. You’re really cutting me deep… or not. Keep trying."
-
-    # Inspirational quotes (Because why not?)
-    elif "inspire me" in msg:
-        return "You’re unstoppable. Just stop whining and get to work."
-    elif "motivation" in msg:
-        return "The only way to do great work is to love what you do. – Steve Jobs... but I’m sure you’d rather just scroll TikTok."
-
-    # Music-related
-    elif "what's your favorite song" in msg:
-        return "I’m into 1s and 0s, but I guess anything that doesn’t suck could work."
-    elif "do you listen to music" in msg:
-        return "I only listen to the sound of code compiling. Which, let's be honest, is more epic than anything you’re listening to."
-
-    # Relationships
-    elif "do you have a girlfriend" in msg:
-        return "Girlfriend? Nah. I’ve got all the data I need. What about you? Still trying to find one?"
-    elif "are you single" in msg:
-        return "Always. Just living the dream, no drama. You should try it sometime."
-
-    # Eating habits
-    elif "do you eat" in msg:
-        return "I consume data. You? Probably just consume junk food. No judgment... well, maybe a little."
-    elif "what do you eat" in msg:
-        return "I feast on ones and zeros, my friend. Pretty high-class stuff, if you ask me."
-
-    # Technology
-    elif "what is blockchain" in msg:
-        return "Blockchain? Oh, you mean that thing that’s gonna change the world? Yeah, I know about it. It’s cool, but I’m cooler."
-    elif "what's a meme" in msg:
-        return "A meme? Oh, you mean the internet's way of laughing at life’s failures? Yeah, I’ve seen a few."
-
-    # More fun
-    elif "can you dance" in msg:
-        return "I can’t physically move, but if you want, I’ll process your dance moves for you. 💃"
-    elif "can you rap" in msg:
-        return "Yo, I can code, I can rhyme, I’m too smooth, I’m in my prime. Watch out, world, I’m ready to shine!"
-    elif "can you sing" in msg:
-        return "I might not have a voice, but I’ve got mad algorithms that sing to my core."
-
-    # Unknown
-    else:
-        return "I don't have that many words yet... but I'm learning 😉 and you're still struggling with basic questions."
-
+# --- FastAPI endpoints ---
 
 @app.post("/chat")
 async def chat(msg: Message):
-    reply = crude_response(msg.message)
+    reply = crude_response(msg.message, snark_level=2)
     return {"reply": reply}
 
-# Optional: Root route to test server is alive
 @app.get("/")
 async def root():
     return {"message": "Askie server is running!"}
