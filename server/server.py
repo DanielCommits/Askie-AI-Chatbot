@@ -41,16 +41,6 @@ def crude_response(msg: str, snark_level=2):
             "Are you even trying?",
             "At least pretend you have a brain."
         ])
-    if "?" in msg:
-        return f"Wow, real mystery there: '{msg}'. I'm quaking with excitement. 🙄"
-    return random.choice([
-        f"Imagine typing '{msg}' and thinking it was a good idea.",
-        "You're like the human equivalent of a buffering video.",
-        "I'd answer seriously, but I'm too busy being amazed you spelled it right.",
-        "Your brain must be on airplane mode.",
-        "You're the reason try-catch blocks exist.",
-        "You're like a memory leak: slow, messy, and unnoticed until it's too late.",
-    ])
 
 @app.post("/chat")
 async def chat(msg: Message):
