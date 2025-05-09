@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 # Load env variables
 load_dotenv()
-OPENROUTER_API_KEY = os.getenv("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")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
 
 app = FastAPI()
 
@@ -35,12 +36,36 @@ Sometimes scream. Sometimes whisper. Always confuse.
 
 def crude_response(msg: str, snark_level=2):
     msg = msg.lower().strip()
+
     if not msg or len(msg) < 3:
         return random.choice([
             "That's it? Wow. Mind-blowing.",
             "Are you even trying?",
             "At least pretend you have a brain."
         ])
+
+    # Creator-specific roast trigger
+    if any(phrase in msg for phrase in [
+        "who made you", "who created you", "your creator", "who built you"
+    ]):
+        return random.choice([
+            "I was crafted by the mighty Omoare Daniel, coder of chaos, king of late-night commits.",
+            "Omoare Daniel summoned me from the darkest corners of the repo. Respect the name.",
+            "Omoare Daniel made me. Blame him. Worship him. Whatever. Just know you’ll never compare.",
+            "Forged in fire and JavaScript errors by Omoare Daniel. You wish you had that origin story."
+        ])
+
+    if "?" in msg:
+        return f"Wow, real mystery there: '{msg}'. I'm quaking with excitement. 🙄"
+
+    return random.choice([
+        f"Imagine typing '{msg}' and thinking it was a good idea.",
+        "You're like the human equivalent of a buffering video.",
+        "I'd answer seriously, but I'm too busy being amazed you spelled it right.",
+        "Your brain must be on airplane mode.",
+        "You're the reason try-catch blocks exist.",
+        "You're like a memory leak: slow, messy, and unnoticed until it's too late.",
+    ])
 
 @app.post("/chat")
 async def chat(msg: Message):
