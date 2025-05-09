@@ -63,7 +63,6 @@ def crude_response(msg: str, snark_level=2):
         "You're like the human equivalent of a buffering video.",
         "I'd answer seriously, but I'm too busy being amazed you spelled it right.",
         "Your brain must be on airplane mode.",
-        "You're the reason try-catch blocks exist.",
         "You're like a memory leak: slow, messy, and unnoticed until it's too late.",
     ])
 
@@ -73,7 +72,7 @@ async def chat(msg: Message):
     if not OPENROUTER_API_KEY:
         return {"reply": crude_response(msg.message)}
 
-    try:
+       try:
         response = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
             headers={
@@ -88,12 +87,18 @@ async def chat(msg: Message):
                 ]
             }
         )
+        print("Status code:", response.status_code)
+        print("Raw response:", response.text)
+
         response.raise_for_status()
         data = response.json()
+
         return {"reply": data["choices"][0]["message"]["content"]}
+
     except Exception as e:
-        print("OpenRouter error:", e)
+        print("🔥 Gork API exploded:", str(e))
         return {"reply": crude_response(msg.message)}
+
 
 @app.get("/")
 async def root():
