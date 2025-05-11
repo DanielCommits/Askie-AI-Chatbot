@@ -86,17 +86,18 @@ async def chat(msg: Message):
                 ]
             }
         )
+
         print("Status code:", response.status_code)
-        print("Raw response:", response.text)
+        print("Raw response:", response.text)  # This one tells all
 
         response.raise_for_status()
         data = response.json()
-
         return {"reply": data["choices"][0]["message"]["content"]}
 
     except Exception as e:
         print("🔥 Gork API exploded:", str(e))
         return {"reply": crude_response(msg.message)}
+
 
 @app.get("/")
 async def root():
