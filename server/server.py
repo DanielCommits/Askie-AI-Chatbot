@@ -79,13 +79,14 @@ async def chat(msg: Message):
                 "Authorization": f"Bearer {OPENROUTER_API_KEY}",
                 "Content-Type": "application/json"
             },
-            json={
-                "model": "mistralai/mistral-7b-instruct",
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": msg.message}
-                ]
-            }
+           json={
+    "model": "meta-llama/llama-3-8b-instruct:free",
+    "messages": [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": msg.message}
+    ]
+}
+
         )
 
         print("Status code:", response.status_code)
