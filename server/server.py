@@ -95,10 +95,16 @@ async def chat(msg: Message):
         return {"reply": data["choices"][0]["message"]["content"]}
 
     except Exception as e:
-        print("🔥 Gork API exploded:", str(e))
+        print("🔥Askie API exploded:", str(e))
         return {"reply": crude_response(msg.message)}
 
 
-@app.get("/")
+@app.get("/debug-key")
+def debug_key():
+    return {
+        "raw_key": repr(OPENROUTER_API_KEY),
+        "key_loaded": bool(OPENROUTER_API_KEY),
+        "first_5": OPENROUTER_API_KEY[:5] if OPENROUTER_API_KEY else None
+    }
 async def root():
     return {"message": "Askie server is running!"}
