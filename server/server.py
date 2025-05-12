@@ -67,10 +67,11 @@ def crude_response(msg: str, snark_level=2):
 
 @app.post("/chat")
 async def chat(msg: Message):
-    # If no API key, fallback to crude
+    print("🔑 Checking OPENROUTER_API_KEY:", repr(OPENROUTER_API_KEY))
+    
     if not OPENROUTER_API_KEY:
+        print("🚨 No API key detected, falling back.")
         return {"reply": crude_response(msg.message)}
-
     try:
         response = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
