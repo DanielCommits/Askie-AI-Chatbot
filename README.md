@@ -16,7 +16,7 @@ Askie was built as a fun twist on the typical friendly chatbot. It mimics a huma
 
 - **Frontend**: React.js
 - **Backend**: Phyton
-- **AI Integration**: OpenAI API 
+- **AI Integration**: Crude bot logic (for now🥀😅) 
 - **Styling**: CSS / Tailwind 
 - **Hosting**: Vercel 
 
