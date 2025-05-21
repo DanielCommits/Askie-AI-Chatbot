@@ -82,7 +82,6 @@ function App() {
           zIndex: 10,
           borderRight: "1px solid #333",
           maxWidth: "100vw",
-
         }}
       >
         <button
@@ -157,6 +156,23 @@ function App() {
             Send
           </button>
         </form>
+        {/* Sidebar Footer */}
+        <div
+          style={{
+            marginTop: "auto",
+            paddingTop: 24,
+            fontSize: 13,
+            color: "#aaa",
+            borderTop: "1px solid #333",
+            textAlign: "center",
+          }}
+        >
+          <div>
+            Created by <b>Omoare Daniel (D4nRick👾)</b>
+          </div>
+          <div>© {new Date().getFullYear()} Askie AI</div>
+          <div>Stay chaotic. 🚀</div>
+        </div>
       </div>
 
       {/* Main content */}
