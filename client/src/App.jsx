@@ -142,7 +142,16 @@ function App() {
             id="bug"
             name="bug"
             rows={3}
-            style={{ width: "100%", marginBottom: 8 }}
+            style={{
+              width: "100%",
+              marginBottom: 8,
+              color: "#fff", // <-- makes text white
+              background: "#23242a", // <-- matches sidebar
+              border: "1px solid #444",
+              borderRadius: 4,
+              padding: 6,
+              fontFamily: "inherit",
+            }}
             placeholder="Describe the bug..."
           />
           <button
