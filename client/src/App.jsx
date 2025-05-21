@@ -60,6 +60,10 @@ function App() {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const toggleSidebar = () => setSidebarOpen((open) => !open);
 
   return (
