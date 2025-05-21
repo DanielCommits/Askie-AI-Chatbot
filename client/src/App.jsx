@@ -9,8 +9,6 @@ function App() {
   const messagesEndRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
-
   const backendUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8000/chat"
@@ -83,6 +81,8 @@ function App() {
           top: 0,
           zIndex: 10,
           borderRight: "1px solid #333",
+          maxWidth: "100vw",
+
         }}
       >
         <button
@@ -105,7 +105,7 @@ function App() {
         <p>
           <b>Contact:</b>
           <br />
-          <a href="mailto:your@email.com" style={{ color: "#7cf" }}>
+          <a href="mailto:omoaredaniel@gmail.com" style={{ color: "#7cf" }}>
             Email Me
           </a>
         </p>
@@ -113,7 +113,7 @@ function App() {
           <b>Report a Bug:</b>
           <br />
           <a
-            href="https://github.com/omoaredaniel/my-chatbot/issues"
+            href="https://github.com/DanielCommits/Askie-AI-Chatbot/issues"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#7cf" }}
@@ -125,7 +125,7 @@ function App() {
           onSubmit={(e) => {
             e.preventDefault();
             window.open(
-              `mailto:your@email.com?subject=Bug Report&body=${encodeURIComponent(
+              `mailto:omoaredaniel@gmail.com?subject=Bug Report&body=${encodeURIComponent(
                 e.target.elements.bug.value
               )}`
             );
@@ -162,9 +162,11 @@ function App() {
       {/* Main content */}
       <div
         style={{
-          marginLeft: sidebarOpen ? 260 : 0,
+          // Remove marginLeft so messages don't move
           flex: 1,
           transition: "margin-left 0.3s",
+          // Optionally add a dim background when sidebar is open on mobile
+          filter: sidebarOpen && window.innerWidth < 600 ? "blur(2px)" : "none",
         }}
       >
         <button
