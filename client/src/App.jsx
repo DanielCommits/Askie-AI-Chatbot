@@ -8,6 +8,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const backendUrl = window.location.hostname === "localhost"
     ? "http://localhost:8000/chat"
     : "https://askie-66pw.onrender.com/chat";
