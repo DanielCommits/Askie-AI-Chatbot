@@ -68,7 +68,7 @@ function App() {
       <div
         className="sidebar"
         style={{
-          width: sidebarOpen ? 260 : 0,
+          width: sidebarOpen ? 270 : 0,
           transition: "width 0.3s",
           background: "#23242a",
           color: "#fff",
