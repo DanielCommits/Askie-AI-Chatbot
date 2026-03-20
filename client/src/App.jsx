@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 
 function App() {
@@ -129,8 +128,8 @@ function App() {
             e.preventDefault();
             window.open(
               `mailto:omoaredaniel@gmail.com?subject=Bug Report&body=${encodeURIComponent(
-                e.target.elements.bug.value
-              )}`
+                e.target.elements.bug.value,
+              )}`,
             );
             e.target.reset();
           }}
@@ -277,8 +276,6 @@ function App() {
         <button className="scroll-button" onClick={scrollToBottom}>
           ⬇️
         </button>
-
-        <Analytics />
       </div>
     </div>
   );
