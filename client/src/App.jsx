@@ -183,7 +183,7 @@ function App() {
             Created by <b>Omoare Daniel (D4knRick👾)</b>
           </div>
           <div>© {new Date().getFullYear()} Askie AI</div>
-          <div>Stay chaotic. 🚀</div>
+          <div>Stay chaotic.🚀</div>
         </div>
       </div>
 
